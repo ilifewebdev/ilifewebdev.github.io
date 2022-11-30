@@ -25,10 +25,10 @@ module.exports = {
         text: '案例',
         link: '/project/'
       },
-      {
-        text: '其他',
-        link: '/other/'
-      },
+      // {
+      //   text: '其他',
+      //   link: '/other/'
+      // },
       {
         text: '关于',
         link: '/about/'
