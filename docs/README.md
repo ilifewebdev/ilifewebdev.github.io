@@ -2,7 +2,7 @@
 home: true
 title: 3d 案例
 actionText: 开始 →
-actionLink: /guide/
+actionLink: /points/
 features:
   - title: ThreeJS知识点
     details: ThreeJS知识点介绍
