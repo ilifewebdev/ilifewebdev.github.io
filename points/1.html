@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue3 + TS 全景看房 | 3D案例</title>
+    <meta name="description" content="3D案例学习">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preload" href="/assets/css/0.styles.2c4a9e83.css" as="style"><link rel="preload" href="/assets/js/app.fe470bf9.js" as="script"><link rel="preload" href="/assets/js/7.0dd8a9e0.js" as="script"><link rel="prefetch" href="/assets/js/10.115de411.js"><link rel="prefetch" href="/assets/js/2.31a37d3d.js"><link rel="prefetch" href="/assets/js/3.28548c5d.js"><link rel="prefetch" href="/assets/js/4.5584c061.js"><link rel="prefetch" href="/assets/js/5.479385c4.js"><link rel="prefetch" href="/assets/js/6.60057faa.js"><link rel="prefetch" href="/assets/js/8.5e8aeb1e.js"><link rel="prefetch" href="/assets/js/9.c4849836.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2c4a9e83.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">3D案例</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/points/" class="nav-link router-link-active">知识点</a></div><div class="nav-item"><a href="/project/" class="nav-link">案例</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/points/" class="nav-link router-link-active">知识点</a></div><div class="nav-item"><a href="/project/" class="nav-link">案例</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <!----></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>Vue3 + TS 全景看房</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/points/1.html#创建项目" class="sidebar-link">创建项目</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/points/1.html#添加dom元素" class="sidebar-link">添加Dom元素</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/points/1.html#加载场景" class="sidebar-link">加载场景</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/points/1.html#sceneobjects-具体实现" class="sidebar-link">SceneObjects 具体实现</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/points/1.html#全景图片贴图" class="sidebar-link">全景图片贴图</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/points/1.html#基本概念" class="sidebar-link">基本概念</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/points/1.html#场景-scene" class="sidebar-link">场景 (scene)</a></li><li class="sidebar-sub-header"><a href="/points/1.html#相机-camera" class="sidebar-link">相机 (camera)</a></li><li class="sidebar-sub-header"><a href="/points/1.html#渲染器-render" class="sidebar-link">渲染器(render)</a></li><li class="sidebar-sub-header"><a href="/points/1.html#渲染循环" class="sidebar-link">渲染循环</a></li><li class="sidebar-sub-header"><a href="/points/1.html#轨道控制器（orbitcontrols）" class="sidebar-link">轨道控制器（OrbitControls）</a></li></ul></li><li><a href="/points/1.html#完整代码" class="sidebar-link">完整代码</a><ul class="sidebar-sub-headers"></ul></li></ul></div></li></ul> </div> <div class="page"> <div class="content"><h1 id="vue3-ts-全景看房"><a href="#vue3-ts-全景看房" class="header-anchor">#</a> Vue3 + TS 全景看房</h1> <h2 id="创建项目"><a href="#创建项目" class="header-anchor">#</a> 创建项目</h2> <div class="language- extra-class"><pre class="language-text"><code>pnpm create vite my-vue-app --template vue
+pnpm  install three
+</code></pre></div><h2 id="添加dom元素"><a href="#添加dom元素" class="header-anchor">#</a> 添加Dom元素</h2> <div class="language- extra-class"><pre class="language-text"><code>&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+</code></pre></div><h2 id="加载场景"><a href="#加载场景" class="header-anchor">#</a> 加载场景</h2> <div class="language- extra-class"><pre class="language-text"><code>import {onMounted} from &quot;vue&quot;;
+import {SceneObjects} from &quot;./classes/SceneObject&quot;;
+onMounted(() =&gt; {  
+  const container = document.getElementById(&quot;container&quot;) as HTMLElement;
+  const object = new SceneObjects(container,{width:window.innerWidth,height:window.innerHeight});
+  object.loadRoomBG('/livingRoom.jpg');
+})
+</code></pre></div><p>SceneObjects 类 实现了场景的初始化，使用 loadRoomBG 来 加载本地资源</p> <h2 id="sceneobjects-具体实现"><a href="#sceneobjects-具体实现" class="header-anchor">#</a> SceneObjects 具体实现</h2> <div class="language- extra-class"><pre class="language-text"><code>import * as THREE from &quot;three&quot;;
+import { OrbitControls } from &quot;three/examples/jsm/controls/OrbitControls&quot;;
+
+class SceneObjects {
+  dom:HTMLElement;
+  scene:THREE.Scene;
+  renderer:THREE.WebGLRenderer;
+  camera:THREE.PerspectiveCamera;
+  ambient:THREE.AmbientLight;
+  obtcontrols:OrbitControls;
+
+  constructor(dom:HTMLElement,size:any) {
+
+    this.dom = dom;
+
+    this.scene = new THREE.Scene();
+    
+    this.ambient = new THREE.AmbientLight(0xffffff);
+    this.scene.add(this.ambient);
+    
+    this.camera = new THREE.PerspectiveCamera(
+        45,
+        size.width / size.height,
+        1,
+        1000
+    );
+    
+    this.renderer = new THREE.WebGLRenderer();
+    this.renderer.setPixelRatio( window.devicePixelRatio );
+    this.renderer.setSize(size.width, size.height);
+    this.renderer.setClearColor(0xffffff, 1);
+    this.dom.appendChild(this.renderer.domElement); 
+    
+    this.obtcontrols = new OrbitControls(this.camera, this.renderer.domElement)
+    this.obtcontrols.minDistance = 1;
+    this.obtcontrols.maxDistance = 100;
+    this.obtcontrols.enablePan = false;
+   
+    window.addEventListener('resize', this.handleResize, false)
+  }
+
+
+  animate() {
+    requestAnimationFrame(this.animate.bind(this));
+    this.render()
+  }
+
+  render(){
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  handleResize = () =&gt; {
+    const width = window.innerWidth
+    const height = window.innerHeight
+    this.camera.aspect = width / height
+    this.camera.updateProjectionMatrix()
+    this.renderer.setSize(width, height)
+  }
+
+  loadRoomBG(url){
+    let sphereGeometry = new THREE.SphereGeometry(16, 50, 50);
+    sphereGeometry.scale(16, 16, -16);
+    const textureLoader = new THREE.TextureLoader(); 
+    textureLoader.load(url, (texture:any)=&gt; { 
+        const material = new THREE.MeshBasicMaterial({ 
+            map: texture,
+        }); 
+        const mesh = new THREE.Mesh(sphereGeometry, material); 
+        this.scene.add(mesh); 
+        this.animate(); 
+    }) 
+  }  
+}
+
+export {
+    SceneObjects
+} 
+</code></pre></div><h2 id="全景图片贴图"><a href="#全景图片贴图" class="header-anchor">#</a> 全景图片贴图</h2> <p>全景图贴图就是使用一张鱼眼全景图片以纹理的形式添加到球体上</p> <div class="language- extra-class"><pre class="language-text"><code>loadRoomBG(url){
+    let sphereGeometry = new THREE.SphereGeometry(16, 50, 50);
+    sphereGeometry.scale(16, 16, -16);
+    const textureLoader = new THREE.TextureLoader(); 
+    textureLoader.load(url, (texture:any)=&gt; { 
+        const material = new THREE.MeshBasicMaterial({ 
+            map: texture,
+        }); 
+        const mesh = new THREE.Mesh(sphereGeometry, material); 
+        this.scene.add(mesh); 
+        this.animate(); 
+    }) 
+  }  
+</code></pre></div><h2 id="基本概念"><a href="#基本概念" class="header-anchor">#</a> 基本概念</h2> <h3 id="场景-scene"><a href="#场景-scene" class="header-anchor">#</a> 场景 (scene)</h3> <p>场景是一个三维空间, 所有物品的容器。相当于世界, 我们所创造的所有物体光源等都必须添加到场景中才能生效或可见</p> <div class="language- extra-class"><pre class="language-text"><code> this.scene = new THREE.Scene();
+</code></pre></div><h3 id="相机-camera"><a href="#相机-camera" class="header-anchor">#</a> 相机 (camera)</h3> <p>相机决定了场景中那个角度的景色会显示出来。相机就像人的眼睛一样，人站在不同位置，抬头或者低头都能够看到不同的景色</p> <div class="language- extra-class"><pre class="language-text"><code> this.camera = new THREE.PerspectiveCamera(
+        45,
+        size.width / size.height,
+        1,
+        1000
+    );
+</code></pre></div><h3 id="渲染器-render"><a href="#渲染器-render" class="header-anchor">#</a> 渲染器(render)</h3> <p>渲染器决定了渲染的结果应该画在页面的什么元素上面，并且以怎样的方式来绘制</p> <div class="language- extra-class"><pre class="language-text"><code>this.renderer = new THREE.WebGLRenderer();
+this.renderer.setPixelRatio( window.devicePixelRatio );
+this.renderer.setSize(size.width, size.height);
+this.renderer.setClearColor(0xffffff, 1);
+this.dom.appendChild(this.renderer.domElement); 
+</code></pre></div><h3 id="渲染循环"><a href="#渲染循环" class="header-anchor">#</a> 渲染循环</h3> <p>调用requestAnimationFrame方法对整个场景进行实时渲染</p> <h3 id="轨道控制器（orbitcontrols）"><a href="#轨道控制器（orbitcontrols）" class="header-anchor">#</a> 轨道控制器（OrbitControls）</h3> <p>使用控制器实现移动、改变视角等效果</p> <div class="language- extra-class"><pre class="language-text"><code> this.obtcontrols = new OrbitControls(this.camera, this.renderer.domElement)
+this.obtcontrols.minDistance = 1;
+this.obtcontrols.maxDistance = 100;
+this.obtcontrols.enablePan = false;
+</code></pre></div><h2 id="完整代码"><a href="#完整代码" class="header-anchor">#</a> 完整代码</h2> <ol><li>[Vue3 + TS 全景看房] (https://github.com/daqianduanshuo/3d/tree/main/quanjing)</li></ol></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.fe470bf9.js" defer></script><script src="/assets/js/7.0dd8a9e0.js" defer></script>
+  </body>
+</html>
