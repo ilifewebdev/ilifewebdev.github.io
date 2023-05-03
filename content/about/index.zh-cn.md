@@ -31,5 +31,5 @@ math:
 ### 联系方式
 
 * Email: shch1289@gmail.com
-* Twitter [@shch1289](https://twitter.com/shch1289)
-* Github [daqianduanshuo](https://github.com/daqianduanshuo)
+* Twitter: [@shch1289](https://twitter.com/shch1289)
+* Github: [daqianduanshuo](https://github.com/daqianduanshuo)
