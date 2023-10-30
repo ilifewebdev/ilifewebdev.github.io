@@ -287,7 +287,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   # Social config in home page
   # 主页的社交信息设置
   [params.social]
-    GitHub = "daqianduanshuo"
+    GitHub = "ilifewebdev"
     Twitter = "@shch1289"
     Email = "shch1289@gmail.com"
 
@@ -426,8 +426,8 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # Gitalk 评论系统设置 (https://github.com/gitalk/gitalk)
       [params.page.comment.gitalk]
         enable = true
-        owner = "daqianduanshuo"
-        repo = "daqianduanshuo.github.io"
+        owner = "ilifewebdev"
+        repo = "ilifewebdev.github.io"
         clientId = "0706f41247cf53feb59f"
         clientSecret = "fed496c7bf5da99ecf880bcb95801802a67c3aee"
       # Valine comment config (https://github.com/xCss/Valine)
@@ -782,7 +782,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
           social = true
           disclaimer = ""
       [languages.en.params.social]
-        GitHub = "daqianduanshuo"
+        GitHub = "ilifewebdev"
         Twitter = "@shch1289"
 
   [languages.zh-cn]
@@ -850,6 +850,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
           social = true
           disclaimer = ""
       [languages.zh-cn.params.social]
-        GitHub = "daqianduanshuo"
+        GitHub = "ilifewebdev"
         Twitter = "@shch1289"
         
